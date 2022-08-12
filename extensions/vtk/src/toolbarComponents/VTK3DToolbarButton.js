@@ -12,6 +12,10 @@ const _isDisplaySetReconstructable = (
   viewportSpecificData = {},
   activeViewportIndex
 ) => {
+  console.log(
+    'viewportSpecificData[activeViewportIndex]',
+    viewportSpecificData[activeViewportIndex]
+  );
   if (!viewportSpecificData[activeViewportIndex]) {
     return false;
   }
@@ -37,11 +41,12 @@ const _isDisplaySetReconstructable = (
   if (!displaySet) {
     return false;
   }
+  console.log('displaySet', displaySet);
 
   return displaySet.isReconstructable;
 };
 
-function VTKMPRToolbarButton({
+function VTK3DToolbarButton({
   parentContext,
   toolbarClickCallback,
   button,
@@ -67,6 +72,8 @@ function VTKMPRToolbarButton({
     activeViewportIndex
   );
 
+  console.log('isVisible', isVisible);
+
   return (
     <React.Fragment>
       {isVisible && (
@@ -82,7 +89,7 @@ function VTKMPRToolbarButton({
   );
 }
 
-VTKMPRToolbarButton.propTypes = {
+VTK3DToolbarButton.propTypes = {
   parentContext: PropTypes.object.isRequired,
   toolbarClickCallback: PropTypes.func.isRequired,
   button: PropTypes.object.isRequired,
@@ -91,4 +98,4 @@ VTKMPRToolbarButton.propTypes = {
   className: PropTypes.string,
 };
 
-export default VTKMPRToolbarButton;
+export default VTK3DToolbarButton;

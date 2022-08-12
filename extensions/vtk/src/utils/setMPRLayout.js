@@ -45,6 +45,7 @@ export default function setMPRLayout(
       });
     });
 
+    console.log(viewportSpecificData);
     setLayoutAndViewportData(
       {
         numRows,

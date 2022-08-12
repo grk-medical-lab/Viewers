@@ -68,8 +68,6 @@ class ToolbarRow extends Component {
 
   updateButtonGroups() {
     const panelModules = extensionManager.modules[MODULE_TYPES.PANEL];
-    console.log('Update button groups');
-    console.log(panelModules);
 
     this.buttonGroups = {
       left: [],

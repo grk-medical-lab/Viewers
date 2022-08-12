@@ -1,5 +1,6 @@
 import SlabThicknessToolbarComponent from './toolbarComponents/SlabThicknessToolbarComponent';
 import VTKMPRToolbarButton from './toolbarComponents/VTKMPRToolbarButton';
+import VTK3DToolbarButton from './toolbarComponents/VTK3DToolbarButton';
 
 const TOOLBAR_BUTTON_TYPES = {
   COMMAND: 'command',
@@ -14,7 +15,9 @@ const definitions = [
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'enableCrosshairsTool',
-    commandOptions: {},
+    commandOptions: {
+      visible: true,
+    },
   },
   {
     id: 'WWWC',
@@ -34,7 +37,6 @@ const definitions = [
     commandName: 'resetMPRView',
     commandOptions: {},
   },
-  /*
   {
     id: 'Rotate',
     label: 'Rotate',
@@ -44,8 +46,7 @@ const definitions = [
     commandName: 'enableRotateTool',
     commandOptions: {},
   },
-  */
-  /*
+
   {
     id: 'setBlendModeToComposite',
     label: 'Disable MIP',
@@ -83,7 +84,7 @@ const definitions = [
     commandName: 'decreaseSlabThickness',
     commandOptions: {},
   },
-  */
+
   {
     id: 'changeSlabThickness',
     label: 'Slab Thickness',
@@ -135,6 +136,15 @@ const definitions = [
     CustomComponent: VTKMPRToolbarButton,
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
     commandName: 'mpr2d',
+    context: 'ACTIVE_VIEWPORT::CORNERSTONE',
+  },
+  {
+    id: '3D',
+    label: '3D',
+    icon: 'cube',
+    type: TOOLBAR_BUTTON_TYPES.COMMAND,
+    CustomComponent: VTK3DToolbarButton,
+    commandName: 'render3d',
     context: 'ACTIVE_VIEWPORT::CORNERSTONE',
   },
 ];

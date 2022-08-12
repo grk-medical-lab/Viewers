@@ -230,8 +230,8 @@ const definitions = [
   },
 
   {
-    id: 'Exit2DMPR',
-    label: 'Exit 2D MPR',
+    id: 'ExitMPR',
+    label: 'Exit MPR',
     icon: 'times',
     //
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
