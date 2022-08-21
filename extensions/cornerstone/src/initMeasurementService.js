@@ -22,6 +22,8 @@ const initMeasurementService = (
     Bidirectional,
     EllipticalROI,
     ArrowAnnotate,
+    RectangleROI,
+    PlanarFreehandROI,
   } = measurementServiceMappingsFactory(
     MeasurementService,
     DisplaySetService,
@@ -63,6 +65,22 @@ const initMeasurementService = (
     ArrowAnnotate.matchingCriteria,
     ArrowAnnotate.toAnnotation,
     ArrowAnnotate.toMeasurement
+  );
+
+  MeasurementService.addMapping(
+    csTools3DVer1MeasurementSource,
+    'RectangleROI',
+    RectangleROI.matchingCriteria,
+    RectangleROI.toAnnotation,
+    RectangleROI.toMeasurement
+  );
+
+  MeasurementService.addMapping(
+    csTools3DVer1MeasurementSource,
+    'PlanarFreehandROI',
+    PlanarFreehandROI.matchingCriteria,
+    PlanarFreehandROI.toAnnotation,
+    PlanarFreehandROI.toMeasurement
   );
 
   return csTools3DVer1MeasurementSource;

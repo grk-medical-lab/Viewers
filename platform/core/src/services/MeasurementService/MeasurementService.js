@@ -77,6 +77,7 @@ const VALUE_TYPES = {
   CIRCLE: 'value_type::circle',
   ROI_THRESHOLD: 'value_type::roiThreshold',
   ROI_THRESHOLD_MANUAL: 'value_type::roiThresholdManual',
+  FREEHAND: 'value_type::PlanarFreehandROI',
 };
 
 /**
@@ -218,6 +219,7 @@ class MeasurementService {
     };
 
     source.annotationToMeasurement = (annotationType, annotation) => {
+      console.log(source, annotationType, annotation);
       return this.annotationToMeasurement(source, annotationType, annotation);
     };
 
@@ -491,6 +493,7 @@ class MeasurementService {
       const { toMeasurementSchema } = sourceMappings.find(
         mapping => mapping.annotationType === annotationType
       );
+      console.log(sourceMappings, annotationType);
 
       /* Convert measurement */
       measurement = toMeasurementSchema(sourceAnnotationDetail);

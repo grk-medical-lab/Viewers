@@ -2,6 +2,8 @@ import Length from './Length';
 import Bidirectional from './Bidirectional';
 import EllipticalROI from './EllipticalROI';
 import ArrowAnnotate from './ArrowAnnotate';
+import RectangleROI from './RectangleROI';
+import PlanarFreehandROI from './PlanarFreehandROI';
 
 const measurementServiceMappingsFactory = (
   MeasurementService,
@@ -23,6 +25,7 @@ const measurementServiceMappingsFactory = (
       RECTANGLE,
       BIDIRECTIONAL,
       POINT,
+      FREEHAND,
     } = MeasurementService.VALUE_TYPES;
 
     // TODO -> I get why this was attempted, but its not nearly flexible enough.
@@ -34,6 +37,7 @@ const measurementServiceMappingsFactory = (
       RectangleROI: RECTANGLE,
       Bidirectional: BIDIRECTIONAL,
       ArrowAnnotate: POINT,
+      PlanarFreehandROI: FREEHAND,
     };
 
     return TOOL_TYPE_TO_VALUE_TYPE[toolType];
@@ -106,6 +110,36 @@ const measurementServiceMappingsFactory = (
         {
           valueType: MeasurementService.VALUE_TYPES.POINT,
           points: 1,
+        },
+      ],
+    },
+    RectangleROI: {
+      toAnnotation: RectangleROI.toAnnotation,
+      toMeasurement: csToolsAnnotation =>
+        RectangleROI.toMeasurement(
+          csToolsAnnotation,
+          DisplaySetService,
+          CornerstoneViewportService,
+          _getValueTypeFromToolType
+        ),
+      matchingCriteria: [
+        {
+          valueType: MeasurementService.VALUE_TYPES.RECTANGLE,
+        },
+      ],
+    },
+    PlanarFreehandROI: {
+      toAnnotation: PlanarFreehandROI.toAnnotation,
+      toMeasurement: csToolsAnnotation =>
+        PlanarFreehandROI.toMeasurement(
+          csToolsAnnotation,
+          DisplaySetService,
+          CornerstoneViewportService,
+          _getValueTypeFromToolType
+        ),
+      matchingCriteria: [
+        {
+          valueType: MeasurementService.VALUE_TYPES.FREEHAND,
         },
       ],
     },
