@@ -45,7 +45,16 @@ function Header({
             {isReturnEnabled && (
               <Icon name="chevron-left" className="w-8 text-primary-active" />
             )}
-            <div className="ml-4">{WhiteLabeling ? CustomLogo(React) : ''}</div>
+            <div className="ml-4">
+              {WhiteLabeling ? (
+                CustomLogo(React)
+              ) : (
+                <Svg
+                  name="logo-ohif"
+                  style={{ width: '180px', height: '40px' }}
+                />
+              )}
+            </div>
           </div>
         </div>
         <div className="flex items-center">{children}</div>
