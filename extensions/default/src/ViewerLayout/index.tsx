@@ -93,7 +93,8 @@ function ViewerLayout({
   const navigate = useNavigate();
 
   const onClickReturnButton = () => {
-    navigate('/');
+    //navigate('/');
+    location.href = '/';
   };
 
   const { t } = useTranslation();
