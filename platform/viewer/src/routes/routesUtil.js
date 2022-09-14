@@ -24,6 +24,14 @@ const StudyListRouting = asyncComponent(() =>
     )
   )
 );
+
+const UploadRouting = asyncComponent(() =>
+  retryImport(() =>
+    import(
+      /* webpackChunkName: "StudyListRouting" */ '../upload/UploadRouting.js'
+    )
+  )
+);
 const StandaloneRouting = asyncComponent(() =>
   retryImport(() =>
     import(
@@ -52,7 +60,7 @@ const ROUTES_DEF = {
       component: StandaloneRouting,
     },
     list: {
-      path: ['/studylist', '/'],
+      path: ['/studylist'],
       component: StudyListRouting,
       condition: appConfig => {
         return appConfig.showStudyList;
@@ -61,6 +69,10 @@ const ROUTES_DEF = {
     local: {
       path: ['/local'],
       component: ViewerLocalFileData,
+    },
+    upload: {
+      path: ['/'],
+      component: UploadRouting,
     },
     IHEInvokeImageDisplay: {
       path: '/IHEInvokeImageDisplay',
