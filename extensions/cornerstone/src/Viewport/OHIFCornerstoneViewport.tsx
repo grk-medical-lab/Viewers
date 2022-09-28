@@ -22,6 +22,20 @@ function areEqual(prevProps, nextProps) {
     return false;
   }
 
+  if (
+    prevProps.viewportOptions.orientation !==
+    nextProps.viewportOptions.orientation
+  ) {
+    return false;
+  }
+
+  if (
+    prevProps.viewportOptions.viewportType !==
+    nextProps.viewportOptions.viewportType
+  ) {
+    return false;
+  }
+
   const prevDisplaySets = prevProps.displaySets[0];
   const nextDisplaySets = nextProps.displaySets[0];
 
@@ -218,22 +232,22 @@ const OHIFCornerstoneViewport = React.memo(props => {
     }
 
     const loadViewportData = async () => {
-      const viewportData = await CornerstoneCacheService.getViewportData(
+      await CornerstoneCacheService.getViewportData(
         viewportIndex,
         displaySets,
         viewportOptions.viewportType,
         dataSource,
+        (viewportDataLoaded) => {
+          CornerstoneViewportService.setViewportDisplaySets(
+            viewportIndex,
+            viewportDataLoaded,
+            viewportOptions,
+            displaySetOptions
+          );
+          setViewportData(viewportDataLoaded);
+        },
         initialImageIndex
       );
-
-      CornerstoneViewportService.setViewportDisplaySets(
-        viewportIndex,
-        viewportData,
-        viewportOptions,
-        displaySetOptions
-      );
-
-      setViewportData(viewportData);
     };
 
     loadViewportData();
@@ -419,7 +433,7 @@ OHIFCornerstoneViewport.propTypes = {
   displaySets: PropTypes.array.isRequired,
   dataSource: PropTypes.object.isRequired,
   viewportOptions: PropTypes.object,
-  displaySetOptions: PropTypes.arrayOf(PropTypes.object),
+  displaySetOptions: PropTypes.arrayOf(PropTypes.any),
   servicesManager: PropTypes.object.isRequired,
   onElementEnabled: PropTypes.func,
   // Note: you SHOULD NOT use the initialImageIdOrIndex for manipulation

@@ -11,6 +11,8 @@ import {
   segmentation,
   utilities as csToolsUtils,
 } from '@cornerstonejs/tools';
+
+import { Types } from '@ohif/core';
 import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
 
 import { getEnabledElement as OHIFgetEnabledElement } from './state';
@@ -26,6 +28,9 @@ const commandsModule = ({ servicesManager }) => {
     UIDialogService,
     CornerstoneViewportService,
     SegmentationService,
+    DisplaySetService,
+    HangingProtocolService,
+    UINotificationService,
   } = servicesManager.services;
 
   function _getActiveViewportEnabledElement() {
@@ -404,6 +409,20 @@ const commandsModule = ({ servicesManager }) => {
         viewport.render();
       }
     },
+    incrementActiveViewport: () => {
+      const { activeViewportIndex, viewports } = ViewportGridService.getState();
+      const nextViewportIndex = (activeViewportIndex + 1) % viewports.length;
+      ViewportGridService.setActiveViewportIndex(nextViewportIndex);
+    },
+    decrementActiveViewport: () => {
+      const { activeViewportIndex, viewports } = ViewportGridService.getState();
+      const nextViewportIndex =
+        (activeViewportIndex - 1 + viewports.length) % viewports.length;
+      ViewportGridService.setActiveViewportIndex(nextViewportIndex);
+    },
+    setHangingProtocol: ({ protocolId }) => {
+      HangingProtocolService.setProtocol(protocolId);
+    },
   };
 
   const definitions = {
@@ -431,6 +450,14 @@ const commandsModule = ({ servicesManager }) => {
       commandFn: actions.rotateViewport,
       storeContexts: [],
       options: { rotation: -90 },
+    },
+    incrementActiveViewport: {
+      commandFn: actions.incrementActiveViewport,
+      storeContexts: [],
+    },
+    decrementActiveViewport: {
+      commandFn: actions.decrementActiveViewport,
+      storeContexts: [],
     },
     flipViewportHorizontal: {
       commandFn: actions.flipViewportHorizontal,
@@ -515,6 +542,11 @@ const commandsModule = ({ servicesManager }) => {
     },
     setViewportColormap: {
       commandFn: actions.setViewportColormap,
+      storeContexts: [],
+      options: {},
+    },
+    setHangingProtocol: {
+      commandFn: actions.setHangingProtocol,
       storeContexts: [],
       options: {},
     },

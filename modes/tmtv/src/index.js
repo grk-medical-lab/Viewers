@@ -8,7 +8,6 @@ import setFusionActiveVolume from './utils/setFusionActiveVolume.js';
 const ohif = {
   layout: '@ohif/extension-default.layoutTemplateModule.viewerLayout',
   sopClassHandler: '@ohif/extension-default.sopClassHandlerModule.stack',
-  hangingProtocols: '@ohif/extension-default.hangingProtocolModule.default',
   measurements: '@ohif/extension-default.panelModule.measure',
   thumbnailList: '@ohif/extension-default.panelModule.seriesList',
 };
@@ -100,17 +99,19 @@ function modeFactory({ modeConfiguration }) {
           // For fusion toolGroup we need to add the volumeIds for the crosshairs
           // since in the fusion viewport we don't want both PT and CT to render MIP
           // when slabThickness is modified
-          const matches = HangingProtocolService.getDisplaySetsMatchDetails();
+          const {
+            displaySetMatchDetails,
+          } = HangingProtocolService.getMatchDetails();
 
           setCrosshairsConfiguration(
-            matches,
+            displaySetMatchDetails,
             toolNames,
             ToolGroupService,
             DisplaySetService
           );
 
           setFusionActiveVolume(
-            matches,
+            displaySetMatchDetails,
             toolNames,
             ToolGroupService,
             DisplaySetService
@@ -186,7 +187,7 @@ function modeFactory({ modeConfiguration }) {
       },
     ],
     extensions: extensionDependencies,
-    hangingProtocols: [tmtv.hangingProtocols],
+    hangingProtocol: 'ptCT',
     sopClassHandlers: [ohif.sopClassHandler],
     hotkeys: [...hotkeys.defaults.hotkeyBindings],
   };

@@ -14,7 +14,7 @@ const defaultProtocol = {
       id: 'hYbmMy3b7pz7GLiaT',
       name: 'default',
       viewportStructure: {
-        type: 'grid',
+        layoutType: 'grid',
         properties: {
           rows: 1,
           columns: 1,
@@ -23,7 +23,9 @@ const defaultProtocol = {
       displaySets: [
         {
           id: 'displaySet',
+          // Unused currently
           imageMatchingRules: [],
+          // Matches displaysets, NOT series
           seriesMatchingRules: [],
           studyMatchingRules: [],
         },
@@ -54,8 +56,8 @@ const defaultProtocol = {
 function getHangingProtocolModule() {
   return [
     {
-      name: 'default',
-      protocols: [defaultProtocol],
+      id: defaultProtocol.id,
+      protocol: defaultProtocol,
     },
   ];
 }

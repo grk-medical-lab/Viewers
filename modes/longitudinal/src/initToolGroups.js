@@ -1,7 +1,8 @@
 function initDefaultToolGroup(
   extensionManager,
   ToolGroupService,
-  commandsManager
+  commandsManager,
+  toolGroupId
 ) {
   const utilityModule = extensionManager.getModuleEntry(
     '@ohif/extension-cornerstone.utilityModule.tools'
@@ -58,7 +59,6 @@ function initDefaultToolGroup(
     },
   };
 
-  const toolGroupId = 'default';
   ToolGroupService.createToolGroupAndAddTools(toolGroupId, tools, toolsConfig);
 }
 
@@ -143,8 +143,19 @@ function initSRToolGroup(extensionManager, ToolGroupService, commandsManager) {
 }
 
 function initToolGroups(extensionManager, ToolGroupService, commandsManager) {
-  initDefaultToolGroup(extensionManager, ToolGroupService, commandsManager);
+  initDefaultToolGroup(
+    extensionManager,
+    ToolGroupService,
+    commandsManager,
+    'default'
+  );
   initSRToolGroup(extensionManager, ToolGroupService, commandsManager);
+  initDefaultToolGroup(
+    extensionManager,
+    ToolGroupService,
+    commandsManager,
+    'mpr'
+  );
 }
 
 export default initToolGroups;
