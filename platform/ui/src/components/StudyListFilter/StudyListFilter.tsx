@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-
+import { Dialog, useModal } from '@ohif/ui';
 import { Button, Icon, Typography, InputGroup } from '../';
 
 const StudyListFilter = ({
@@ -13,6 +13,7 @@ const StudyListFilter = ({
   numOfStudies,
 }) => {
   const { t } = useTranslation('StudyList');
+  const { show, hide } = useModal();
   const { sortBy, sortDirection } = filterValues;
   const filterSorting = { sortBy, sortDirection };
   const setFilterSorting = sortingValues => {
@@ -23,6 +24,7 @@ const StudyListFilter = ({
   };
   const isSortingEnabled = numOfStudies > 0 && numOfStudies <= 100;
 
+  const onSubmitHandler = () => {};
   return (
     <React.Fragment>
       <div>
@@ -48,6 +50,45 @@ const StudyListFilter = ({
                     {t('Clear filters')}
                   </Button>
                 )}
+                <Typography
+                  variant="h4"
+                  className="mr-2"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    window.open(
+                      'http://upload-dicom.medical-lab.co.kr/',
+                      'window팝업',
+                      'width=300, height=300, menubar=no, status=no, toolbar=no'
+                    );
+                    // show({
+                    //   id: 'upload-dicom',
+                    //   centralize: true,
+                    //   isDraggable: false,
+                    //   showOverlay: true,
+                    //   content: Dialog,
+                    //   contentProps: {
+                    //     title: 'Upload DICOM Files',
+                    //     body: () => (
+                    //       <div className="p-4 text-white bg-primary-dark">
+                    //         <iframe
+                    //           src="http://upload-dicom.medical-lab.co.kr/"
+                    //           width="100%"
+                    //           height="300"
+                    //         ></iframe>
+                    //       </div>
+                    //     ),
+                    //     actions: [
+                    //       // temp: swap button types until colors are updated
+                    //       { id: 'cancel', text: 'Cancel', type: 'primary' },
+                    //       { id: 'save', text: 'Save', type: 'secondary' },
+                    //     ],
+                    //     onSubmit: onSubmitHandler,
+                    //   },
+                    // });
+                  }}
+                >
+                  +
+                </Typography>
                 <Typography
                   variant="h4"
                   className="mr-2"
