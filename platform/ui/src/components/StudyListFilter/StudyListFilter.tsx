@@ -55,11 +55,7 @@ const StudyListFilter = ({
                   className="mr-2"
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
-                    window.open(
-                      'http://upload-dicom.medical-lab.co.kr/',
-                      'window팝업',
-                      'width=300, height=300, menubar=no, status=no, toolbar=no'
-                    );
+                    window.open('http://upload-dicom.medical-lab.co.kr/');
                     // show({
                     //   id: 'upload-dicom',
                     //   centralize: true,
