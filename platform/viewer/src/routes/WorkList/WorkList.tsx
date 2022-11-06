@@ -321,7 +321,7 @@ function WorkList({
           }}
           seriesTableDataSource={
             seriesInStudiesMap.has(studyInstanceUid)
-              ? seriesInStudiesMap.get(studyInstanceUid).map(s => {
+              ? seriesInStudiesMap.get(studyInstanceUid).filter(s => s.modality != 'KO').map(s => {
                 return {
                   description: s.description || '(empty)',
                   seriesNumber: s.seriesNumber || '',
