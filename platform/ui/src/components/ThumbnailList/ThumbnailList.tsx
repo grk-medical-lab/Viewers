@@ -15,6 +15,7 @@ const ThumbnailList = ({
     <div className="py-3 bg-black overflow-y-hidden ohif-scrollbar">
       {thumbnails.map(
         ({
+          StudyInstanceUID,
           displaySetInstanceUID,
           description,
           dragData,
@@ -39,6 +40,7 @@ const ThumbnailList = ({
               return (
                 <Thumbnail
                   key={displaySetInstanceUID}
+                  StudyInstanceUID={StudyInstanceUID}
                   displaySetInstanceUID={displaySetInstanceUID}
                   dragData={dragData}
                   description={description}
@@ -58,6 +60,7 @@ const ThumbnailList = ({
               return (
                 <ThumbnailTracked
                   key={displaySetInstanceUID}
+                  StudyInstanceUID={StudyInstanceUID}
                   displaySetInstanceUID={displaySetInstanceUID}
                   dragData={dragData}
                   description={description}

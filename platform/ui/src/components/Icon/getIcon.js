@@ -64,6 +64,7 @@ import toolRectangle from './../../assets/icons/tool-rectangle.svg';
 import toolFusionColor from './../../assets/icons/tool-fusion-color.svg';
 import toolCreateThreshold from './../../assets/icons/tool-create-threshold.svg';
 import editPatient from './../../assets/icons/edit-patient.svg';
+import download from './../../assets/icons/file-download-svgrepo-com.svg';
 
 /** Old OHIF */
 import oldTrash from './../../assets/icons/old-trash.svg';
@@ -134,6 +135,7 @@ const ICONS = {
   'tool-fusion-color': toolFusionColor,
   'tool-create-threshold': toolCreateThreshold,
   'edit-patient': editPatient,
+  download: download,
 
   /** Old OHIF */
   'old-trash': oldTrash,

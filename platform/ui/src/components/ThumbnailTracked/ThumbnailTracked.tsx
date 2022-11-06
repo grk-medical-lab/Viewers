@@ -6,6 +6,7 @@ import { Icon, Thumbnail, Tooltip } from '../';
 import { StringNumber } from '../../types';
 
 const ThumbnailTracked = ({
+  StudyInstanceUID,
   displaySetInstanceUID,
   className,
   imageSrc,
@@ -106,6 +107,7 @@ const ThumbnailTracked = ({
         )}
       </div>
       <Thumbnail
+        StudyInstanceUID={StudyInstanceUID}
         displaySetInstanceUID={displaySetInstanceUID}
         imageSrc={imageSrc}
         imageAltText={imageAltText}
@@ -133,6 +135,7 @@ ThumbnailTracked.propTypes = {
     /** Must match the "type" a dropTarget expects */
     type: PropTypes.string.isRequired,
   }),
+  StudyInstanceUID: PropTypes.string.isRequired,
   displaySetInstanceUID: PropTypes.string.isRequired,
   className: PropTypes.string,
   imageSrc: PropTypes.string,

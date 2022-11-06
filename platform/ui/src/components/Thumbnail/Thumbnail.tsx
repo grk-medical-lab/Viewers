@@ -4,11 +4,13 @@ import classnames from 'classnames';
 import { useDrag } from 'react-dnd';
 import { Icon } from '../';
 import { StringNumber } from '../../types';
+import { DicomMetadataStore } from '@ohif/core';
 
 /**
  *
  */
 const Thumbnail = ({
+  StudyInstanceUID,
   displaySetInstanceUID,
   className,
   imageSrc,
@@ -31,6 +33,15 @@ const Thumbnail = ({
       return Object.keys(dragData).length !== 0;
     },
   });
+
+  const DICOMdownload = () => {
+    const studyMeta = DicomMetadataStore.getStudy(StudyInstanceUID);
+    const RetrieveURL =
+      studyMeta?.series?.filter(
+        series => series.SeriesNumber === seriesNumber
+      )[0].RetrieveURL + '?accept=application/zip';
+    window.open(RetrieveURL);
+  };
 
   return (
     <div
@@ -75,6 +86,13 @@ const Thumbnail = ({
           <div className="flex flex-row items-center flex-1">
             <Icon name="group-layers" className="w-3 mr-2" /> {numInstances}
           </div>
+          <div className="flex flex-row items-center flex-2">
+            <Icon
+              name="download"
+              className="w-3 mr-2"
+              onClick={() => DICOMdownload()}
+            />
+          </div>
         </div>
         <div className="text-base text-white break-all">{description}</div>
       </div>
@@ -83,6 +101,7 @@ const Thumbnail = ({
 };
 
 Thumbnail.propTypes = {
+  StudyInstanceUID: PropTypes.string.isRequired,
   displaySetInstanceUID: PropTypes.string.isRequired,
   className: PropTypes.string,
   imageSrc: PropTypes.string,
