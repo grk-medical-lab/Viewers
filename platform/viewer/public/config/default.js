@@ -1,128 +1,65 @@
 window.config = {
-  routerBasename: '/',
-  // whiteLabelling: {},
-  extensions: [],
-  modes: [],
-  showStudyList: true,
-  maxNumberOfWebWorkers: 3,
-  // below flag is for performance reasons, but it might not work for all servers
-  omitQuotationForMultipartRequest: true,
-  maxNumRequests: {
-    interaction: 100,
-    thumbnail: 75,
-    prefetch: 10,
-  },
-  //
+  // default: '/'
+  // routerBasename: '/',
+  // extensions: [],
+  // showStudyList: true,
   // filterQueryParam: false,
-  dataSources: [
-    // {
-    //   friendlyName: 'dcmjs DICOMWeb Server',
-    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
-    //   sourceName: 'dicomweb',
-    //   configuration: {
-    //     name: 'DCM4CHEE',
-    //     wadoUriRoot: 'http://api.medical-lab.co.kr',
-    //     qidoRoot: 'http://api.medical-lab.co.kr',
-    //     wadoRoot: 'http://api.medical-lab.co.kr',
-    //     // wadoUriRoot: 'http://localhost:5985',
-    //     // qidoRoot: 'http://localhost:5985',
-    //     // wadoRoot: 'http://localhost:5985',
-    //     // wadoUriRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
-    //     // qidoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
-    //     // wadoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
-    //     // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-    //     // qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-    //     // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-    //     qidoSupportsIncludeField: true,
-    //     supportsReject: true,
-    //     //우리서버와 로컬은 wadouri , server.dcmjs.org를 볼때는 wadors
-    //     // imageRendering: 'wadors',
-    //     imageRendering: 'wadouri',
-    //     thumbnailRendering: 'wadors',
-    //     enableStudyLazyLoad: true,
-    //     supportsFuzzyMatching: true,
-    //     supportsWildcard: true,
-    //   },
-    // },
-    {
-      friendlyName: 'dcmjs DICOMWeb Server',
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
-      sourceName: 'dicomweb',
-      configuration: {
-        name: 'DCM4CHEE',
-        // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        // qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+  // disableServersCache: false,
+  // studyPrefetcher: {
+  //   enabled: true,
+  //   order: 'closest',
+  //   displaySetCount: 3,
+  //   preventCache: false,
+  //   prefetchDisplaySetsTimeout: 300,
+  //   maxNumPrefetchRequests: 100,
+  //   displayProgress: true,
+  //   includeActiveDisplaySet: true,
+  // },
+  // servers: {
+  //   dicomWeb: [
+  //     {
+  //       name: 'DCM4CHEE',
+  //       wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
+  //       qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+  //       wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+  //       qidoSupportsIncludeField: true,
+  //       imageRendering: 'wadors',
+  //       thumbnailRendering: 'wadors',
+  //       enableStudyLazyLoad: true,
+  //       supportsFuzzyMatching: true,
+  //     },
+  //   ],
+  // },
+
+  routerBasename: '/ohif',
+  rootUrl: 'http://api.medical-lab.co.kr:2016/ohif',
+  servers: {
+    dicomWeb: [
+      {
+        name: 'dicomweb_server',
+        // wadoUriRoot: 'http://api.medical-lab.co.kr',
+        // qidoRoot: 'http://api.medical-lab.co.kr',
+        // wadoRoot: 'http://api.medical-lab.co.kr',
+        // wadoUriRoot: 'http://localhost:5985',
+        // qidoRoot: 'http://localhost:5985',
+        // wadoRoot: 'http://localhost:5985',
         wadoUriRoot:
           'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
         qidoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
         wadoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
-        supportsReject: true,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
-        supportsFuzzyMatching: true,
-        supportsWildcard: true,
+        requestOptions: {
+          requestFromBrowser: true,
+        },
       },
-    },
-    // {
-    //   friendlyName: 'Orthanc Server',
-    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
-    //   sourceName: 'dicomweb',
-    //   configuration: {
-    //     name: 'Orthanc',
-    //     wadoUriRoot: '/wado',
-    //     qidoRoot: '/dicom-web',
-    //     wadoRoot: '/dicom-web',
-    //     qidoSupportsIncludeField: false,
-    //     imageRendering: 'wadors',
-    //     thumbnailRendering: 'wadors',
-    //   },
-    // },
-    {
-      friendlyName: 'dicom json',
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomjson',
-      sourceName: 'dicomjson',
-      configuration: {
-        name: 'json',
-      },
-    },
-    {
-      friendlyName: 'dicom local',
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomlocal',
-      sourceName: 'dicomlocal',
-      configuration: {},
-    },
-  ],
-  httpErrorHandler: error => {
-    // This is 429 when rejected from the public idc sandbox too often.
-    console.warn(error.status);
-
-    // Could use services manager here to bring up a dialog/modal if needed.
-    console.warn('test, navigate to https://ohif.org/');
+    ],
   },
-  // whiteLabeling: {
-  //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
-  //     return React.createElement(
-  //       'a',
-  //       {
-  //         target: '_self',
-  //         rel: 'noopener noreferrer',
-  //         className: 'text-purple-600 line-through',
-  //         href: '/',
-  //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
-  //   },
-  // },
-  defaultDataSourceName: 'dicomweb',
+  // Extensions should be able to suggest default values for these?
+  // Or we can require that these be explicitly set
   hotkeys: [
+    // ~ Global
     {
       commandName: 'incrementActiveViewport',
       label: 'Next Viewport',
@@ -133,16 +70,18 @@ window.config = {
       label: 'Previous Viewport',
       keys: ['left'],
     },
+    // Supported Keys: https://craig.is/killing/mice
+    // ~ Cornerstone Extension
     { commandName: 'rotateViewportCW', label: 'Rotate Right', keys: ['r'] },
     { commandName: 'rotateViewportCCW', label: 'Rotate Left', keys: ['l'] },
     { commandName: 'invertViewport', label: 'Invert', keys: ['i'] },
     {
-      commandName: 'flipViewportHorizontal',
+      commandName: 'flipViewportVertical',
       label: 'Flip Horizontally',
       keys: ['h'],
     },
     {
-      commandName: 'flipViewportVertical',
+      commandName: 'flipViewportHorizontal',
       label: 'Flip Vertically',
       keys: ['v'],
     },
@@ -150,25 +89,23 @@ window.config = {
     { commandName: 'scaleDownViewport', label: 'Zoom Out', keys: ['-'] },
     { commandName: 'fitViewportToWindow', label: 'Zoom to Fit', keys: ['='] },
     { commandName: 'resetViewport', label: 'Reset', keys: ['space'] },
+    // clearAnnotations
     { commandName: 'nextImage', label: 'Next Image', keys: ['down'] },
     { commandName: 'previousImage', label: 'Previous Image', keys: ['up'] },
-    // {
-    //   commandName: 'previousViewportDisplaySet',
-    //   label: 'Previous Series',
-    //   keys: ['pagedown'],
-    // },
-    // {
-    //   commandName: 'nextViewportDisplaySet',
-    //   label: 'Next Series',
-    //   keys: ['pageup'],
-    // },
-    //
+    // firstImage
+    // lastImage
     {
-      commandName: 'setToolActive',
-      commandOptions: { toolName: 'Zoom' },
-      label: 'Zoom',
-      keys: ['z'],
+      commandName: 'previousViewportDisplaySet',
+      label: 'Previous Series',
+      keys: ['pagedown'],
     },
+    {
+      commandName: 'nextViewportDisplaySet',
+      label: 'Next Series',
+      keys: ['pageup'],
+    },
+    // ~ Cornerstone Tools
+    { commandName: 'setZoomTool', label: 'Zoom', keys: ['z'] },
     // ~ Window level presets
     {
       commandName: 'windowLevelPreset1',
@@ -216,4 +153,13 @@ window.config = {
       keys: ['9'],
     },
   ],
+  cornerstoneExtensionConfig: {},
+  // Following property limits number of simultaneous series metadata requests.
+  // For http/1.x-only servers, set this to 5 or less to improve
+  //  on first meaningful display in viewer
+  // If the server is particularly slow to respond to series metadata
+  //  requests as it extracts the metadata from raw files everytime,
+  //  try setting this to even lower value
+  // Leave it undefined for no limit, suitable for HTTP/2 enabled servers
+  // maxConcurrentMetadataRequests: 5,
 };
