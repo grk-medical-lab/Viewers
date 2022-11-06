@@ -321,14 +321,17 @@ function WorkList({
           }}
           seriesTableDataSource={
             seriesInStudiesMap.has(studyInstanceUid)
-              ? seriesInStudiesMap.get(studyInstanceUid).filter(s => s.modality != 'KO').map(s => {
-                return {
-                  description: s.description || '(empty)',
-                  seriesNumber: s.seriesNumber || '',
-                  modality: s.modality || '',
-                  instances: s.numSeriesInstances || '',
-                };
-              })
+              ? seriesInStudiesMap
+                  .get(studyInstanceUid)
+                  .filter(s => s.modality != 'KO')
+                  .map(s => {
+                    return {
+                      description: s.description || '(empty)',
+                      seriesNumber: s.seriesNumber || '',
+                      modality: s.modality || '',
+                      instances: s.numSeriesInstances || '',
+                    };
+                  })
               : []
           }
         >
@@ -346,7 +349,7 @@ function WorkList({
               <Link
                 key={i}
                 to={`${mode.routeName}?StudyInstanceUIDs=${studyInstanceUid}`}
-              // to={`${mode.routeName}/dicomweb?StudyInstanceUIDs=${studyInstanceUid}`}
+                // to={`${mode.routeName}/dicomweb?StudyInstanceUIDs=${studyInstanceUid}`}
               >
                 <Button
                   rounded="full"
@@ -354,7 +357,7 @@ function WorkList({
                   disabled={!isValidMode}
                   endIcon={<Icon name="launch-arrow" />} // launch-arrow | launch-info
                   className={classnames('font-bold', { 'ml-2': !isFirst })}
-                  onClick={() => { }}
+                  onClick={() => {}}
                 >
                   {t(`Modes:${mode.displayName}`)}
                 </Button>
@@ -419,9 +422,10 @@ function WorkList({
       icon: 'power-off',
       title: t('Header:Logout'),
       onClick: () => {
-        navigate(`/logout?redirect_uri=${encodeURIComponent(window.location.href)}`);
-
-      }
+        navigate(
+          `/logout?redirect_uri=${encodeURIComponent(window.location.href)}`
+        );
+      },
     });
   }
 
@@ -493,7 +497,7 @@ const defaultFilterValues = {
 };
 
 function _tryParseInt(str, defaultValue) {
-  var retValue = defaultValue;
+  let retValue = defaultValue;
   if (str !== null) {
     if (str.length > 0) {
       if (!isNaN(str)) {
