@@ -44,6 +44,7 @@ function TrackedMeasurementsContextProvider(
           trackedSeries.includes(m.referenceSeriesUID)
       );
 
+      console.log(trackedMeasurements);
       const uid = trackedMeasurements[0].uid;
 
       MeasurementService.jumpToMeasurement(
