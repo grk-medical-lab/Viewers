@@ -161,6 +161,7 @@ window.config = {
     //   label: 'Next Series',
     //   keys: ['pageup'],
     // },
+    //
     {
       commandName: 'setToolActive',
       commandOptions: { toolName: 'Zoom' },
