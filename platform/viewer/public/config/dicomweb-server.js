@@ -12,6 +12,7 @@ window.config = {
     thumbnail: 75,
     prefetch: 10,
   },
+  //
   // filterQueryParam: false,
   dataSources: [
     // {
