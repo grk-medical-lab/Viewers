@@ -1,4 +1,4 @@
-export default function (wadoRoot) {
+export default function(wadoRoot) {
   return {
     series: (StudyInstanceUID, SeriesInstanceUID) => {
       return new Promise((resolve, reject) => {
@@ -15,10 +15,14 @@ export default function (wadoRoot) {
 
         console.log(xhr);
 
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
           //Call a function when the state changes.
           if (xhr.readyState == 4) {
             switch (xhr.status) {
+              case 200:
+                resolve(xhr.responseText);
+
+                break;
               case 204:
                 resolve(xhr.responseText);
 
