@@ -38,13 +38,15 @@ function TrackedMeasurementsContextProvider(
 
       const { trackedStudy, trackedSeries } = ctx;
       const measurements = MeasurementService.getMeasurements();
+      console.log('sssss', ctx);
+
       const trackedMeasurements = measurements.filter(
         m =>
           trackedStudy === m.referenceStudyUID &&
           trackedSeries.includes(m.referenceSeriesUID)
       );
 
-      console.log(trackedMeasurements);
+      console.log('sssss', trackedMeasurements);
       const uid = trackedMeasurements[0].uid;
 
       MeasurementService.jumpToMeasurement(

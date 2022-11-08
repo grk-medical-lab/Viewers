@@ -414,6 +414,12 @@ async function _getViewportReferencedDisplaySetData(
   measurementSelected,
   DisplaySetService
 ) {
+  console.log(
+    '==============',
+    displaySet,
+    measurementSelected,
+    DisplaySetService
+  );
   const { measurements } = displaySet;
   const measurement = measurements[measurementSelected];
 

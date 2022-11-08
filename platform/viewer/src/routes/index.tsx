@@ -5,7 +5,9 @@ import { ErrorBoundary } from '@ohif/ui';
 // Route Components
 import DataSourceWrapper from './DataSourceWrapper';
 import WorkList from './WorkList';
+import Login from './Login';
 import Local from './Local';
+import ProjectList from './ProjectList';
 import NotFound from './NotFound';
 import buildModeRoutes from './buildModeRoutes';
 import PrivateRoute from './PrivateRoute';
@@ -24,6 +26,15 @@ const bakedInRoutes = [
     path: '/local',
     children: Local,
   },
+  {
+    path: '/project',
+    children: ProjectList,
+  },
+  {
+    path: '/login',
+    children: Login,
+  },
+
   // NOT FOUND (404)
   { component: NotFound },
 ];

@@ -153,6 +153,7 @@ function modeFactory({ modeConfiguration }) {
       series: [],
     },
     isValidMode: ({ modalities }) => {
+      console.log('sssss===', modalities);
       const modalities_list = modalities.split('\\');
       const invalidModalities = ['SM'];
 
