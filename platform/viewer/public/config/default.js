@@ -52,10 +52,20 @@ window.config = {
         // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
         // qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
         // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        // wadoUriRoot:
+        //   'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
+        // qidoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+        // wadoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+        // wadoUriRoot:
+        //     '/dcm4chee-arc/aets/DCM4CHEE/wado',
+        // qidoRoot: '/dcm4chee-arc/aets/DCM4CHEE/rs',
+        // wadoRoot: '/dcm4chee-arc/aets/DCM4CHEE/rs',
         wadoUriRoot:
-          'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
+          'https://dicom-web.carpediem.so/dcm4chee-arc/aets/DCM4CHEE/wado',
+        qidoRoot:
+          'https://dicom-web.carpediem.so/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoRoot:
+          'https://dicom-web.carpediem.so/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
         supportsReject: true,
         imageRendering: 'wadors',
