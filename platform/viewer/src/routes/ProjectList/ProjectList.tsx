@@ -4,19 +4,22 @@ import { Svg } from '@ohif/ui';
 
 function ProjectList() {
   const navigate = useNavigate();
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
 
   // Set body style
   useEffect(() => {
+    const isLogin = localStorage.getItem('isLogin');
+    if (isLogin != 'OK') {
+      navigate('/login');
+    }
+
     document.body.classList.add('bg-black');
     return () => {
       document.body.classList.remove('bg-black');
     };
   }, []);
 
-  const submit = () => {
-    console.log(id, password);
+  const goStudy = () => {
+    navigate('/');
   };
 
   return (
@@ -39,8 +42,7 @@ function ProjectList() {
         <div className="mt-10 py-5 border-b border-gray-900">
           <h3 className="text-white text-bold text-2xl">Project List</h3>
           <p className="text-white text-bold text-base mt-2">
-            10
-            <span className="text-primary-light ml-2">Projects</span>
+            3<span className="text-primary-light ml-2">Projects</span>
           </p>
         </div>
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-5">
@@ -57,65 +59,59 @@ function ProjectList() {
                     </th>
                     <th
                       scope="col"
-                      className="text-sm font-medium text-white px-6 py-4"
+                      className="text-sm font-medium text-white px-6 py-4 text-left"
                     >
-                      Project Name
+                      Title
                     </th>
                     <th
                       scope="col"
                       className="text-sm font-medium text-white px-6 py-4"
                     >
-                      Last
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-sm font-medium text-white px-6 py-4"
-                    >
-                      Handle
+                      Date
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-gray-800">
+                  <tr
+                    className="bg-gray-800 cursor-pointer hover:bg-secondary-main"
+                    onClick={goStudy}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">
                       1
                     </td>
-                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      Mark
+                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap text-left">
+                      GRK Medical Lab Demo Project
                     </td>
                     <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      Otto
-                    </td>
-                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      @mdo
+                      Nov. 01 2022
                     </td>
                   </tr>
-                  <tr className="bg-gray-900">
+                  <tr
+                    className="bg-gray-900 cursor-pointer hover:bg-secondary-main"
+                    onClick={goStudy}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">
                       2
                     </td>
-                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      Jacob
+                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap text-left">
+                      Quantitative Measurement of Hepatocellular Carcinoma
                     </td>
                     <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      Thornton
-                    </td>
-                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      @fat
+                      Oct. 27 2022
                     </td>
                   </tr>
-                  <tr className="bg-gray-800">
+                  <tr
+                    className="bg-gray-800 cursor-pointer hover:bg-secondary-main"
+                    onClick={goStudy}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">
                       3
                     </td>
-                    <td
-                      colSpan="2"
-                      className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap text-center"
-                    >
-                      Larry the Bird
+                    <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap text-left">
+                      Imaging-Based Diagnostic System
                     </td>
                     <td className="text-sm text-gray-100 font-light px-6 py-4 whitespace-nowrap">
-                      @twitter
+                      Sep. 11 2022
                     </td>
                   </tr>
                 </tbody>

@@ -142,6 +142,11 @@ function WorkList({
 
   // Set body style
   useEffect(() => {
+    const isLogin = localStorage.getItem('isLogin');
+    if (isLogin != 'OK') {
+      document.body.style = 'display:none';
+      window.location.href = '/login';
+    }
     document.body.classList.add('bg-black');
     return () => {
       document.body.classList.remove('bg-black');
