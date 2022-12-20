@@ -8,11 +8,11 @@ import WorkList from './WorkList';
 import Login from './Login';
 import Local from './Local';
 import ProjectList from './ProjectList';
+import Debug from './Debug';
 import NotFound from './NotFound';
 import buildModeRoutes from './buildModeRoutes';
 import PrivateRoute from './PrivateRoute';
 
-// TODO: Make these configurable
 // TODO: Include "routes" debug route if dev build
 const bakedInRoutes = [
   // WORK LIST
@@ -21,6 +21,10 @@ const bakedInRoutes = [
     children: DataSourceWrapper,
     private: true,
     props: { children: WorkList },
+  },
+  {
+    path: '/debug',
+    children: Debug,
   },
   {
     path: '/local',
@@ -39,6 +43,15 @@ const bakedInRoutes = [
   { component: NotFound },
 ];
 
+// NOT FOUND (404)
+const notFoundRoute = { component: NotFound };
+const WorkListRoute = {
+  path: '/',
+  children: DataSourceWrapper,
+  private: true,
+  props: { children: WorkList },
+};
+
 const createRoutes = ({
   modes,
   dataSources,
@@ -47,6 +60,7 @@ const createRoutes = ({
   commandsManager,
   hotkeysManager,
   routerBasename,
+  showStudyList,
 }) => {
   const routes =
     buildModeRoutes({
@@ -58,7 +72,18 @@ const createRoutes = ({
       hotkeysManager,
     }) || [];
 
-  const allRoutes = [...routes, ...bakedInRoutes];
+  const { customizationService } = servicesManager.services;
+
+  const customRoutes = customizationService.getGlobalCustomization(
+    'customRoutes'
+  );
+  const allRoutes = [
+    ...routes,
+    ...(showStudyList ? [WorkListRoute] : []),
+    ...(customRoutes?.routes || []),
+    ...bakedInRoutes,
+    customRoutes?.notFoundRoute || notFoundRoute,
+  ];
 
   function RouteWithErrorBoundary({ route, ...rest }) {
     // eslint-disable-next-line react/jsx-props-no-spreading

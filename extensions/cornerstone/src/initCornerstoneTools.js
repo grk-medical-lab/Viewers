@@ -13,6 +13,7 @@ import {
   BidirectionalTool,
   ArrowAnnotateTool,
   DragProbeTool,
+  ProbeTool,
   AngleTool,
   MagnifyTool,
   CrosshairsTool,
@@ -20,6 +21,7 @@ import {
   init,
   addTool,
   annotation,
+  ReferenceLinesTool,
 } from '@cornerstonejs/tools';
 
 export default function initCornerstoneTools(configuration = {}) {
@@ -29,6 +31,7 @@ export default function initCornerstoneTools(configuration = {}) {
   addTool(StackScrollMouseWheelTool);
   addTool(StackScrollTool);
   addTool(ZoomTool);
+  addTool(ProbeTool);
   addTool(VolumeRotateMouseWheelTool);
   addTool(MIPJumpToClickTool);
   addTool(LengthTool);
@@ -42,6 +45,7 @@ export default function initCornerstoneTools(configuration = {}) {
   addTool(MagnifyTool);
   addTool(CrosshairsTool);
   addTool(SegmentationDisplayTool);
+  addTool(ReferenceLinesTool);
 
   // Modify annotation tools to use dashed lines on SR
   const annotationStyle = {
@@ -69,6 +73,7 @@ const toolNames = {
   MipJumpToClick: MIPJumpToClickTool.toolName,
   Length: LengthTool.toolName,
   DragProbe: DragProbeTool.toolName,
+  Probe: ProbeTool.toolName,
   RectangleROI: RectangleROITool.toolName,
   PlanarFreehandROI: PlanarFreehandROITool.toolName,
   EllipticalROI: EllipticalROITool.toolName,
@@ -77,6 +82,7 @@ const toolNames = {
   Magnify: MagnifyTool.toolName,
   Crosshairs: CrosshairsTool.toolName,
   SegmentationDisplay: SegmentationDisplayTool.toolName,
+  ReferenceLines: ReferenceLinesTool.toolName,
 };
 
 export { toolNames };

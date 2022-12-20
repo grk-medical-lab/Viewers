@@ -25,6 +25,7 @@ import {
   useModal,
   AboutModal,
   UserPreferences,
+  LoadingIndicatorProgress,
 } from '@ohif/ui';
 
 import i18n from '@ohif/i18n';
@@ -45,6 +46,7 @@ function WorkList({
   isLoadingData,
   dataSource,
   hotkeysManager,
+  dataPath,
 }) {
   const { hotkeyDefinitions, hotkeyDefaults } = hotkeysManager;
   const { show, hide } = useModal();
@@ -326,17 +328,14 @@ function WorkList({
           }}
           seriesTableDataSource={
             seriesInStudiesMap.has(studyInstanceUid)
-              ? seriesInStudiesMap
-                  .get(studyInstanceUid)
-                  .filter(s => s.modality != 'KO')
-                  .map(s => {
-                    return {
-                      description: s.description || '(empty)',
-                      seriesNumber: s.seriesNumber || '',
-                      modality: s.modality || '',
-                      instances: s.numSeriesInstances || '',
-                    };
-                  })
+              ? seriesInStudiesMap.get(studyInstanceUid).map(s => {
+                  return {
+                    description: s.description || '(empty)',
+                    seriesNumber: s.seriesNumber ?? '',
+                    modality: s.modality || '',
+                    instances: s.numSeriesInstances || '',
+                  };
+                })
               : []
           }
         >
@@ -353,7 +352,8 @@ function WorkList({
             return (
               <Link
                 key={i}
-                to={`${mode.routeName}?StudyInstanceUIDs=${studyInstanceUid}`}
+                to={`${dataPath ? '../../' : ''}${mode.routeName}${dataPath ||
+                  ''}?StudyInstanceUIDs=${studyInstanceUid}`}
                 // to={`${mode.routeName}/dicomweb?StudyInstanceUIDs=${studyInstanceUid}`}
               >
                 <Button
@@ -361,7 +361,7 @@ function WorkList({
                   variant={isValidMode ? 'contained' : 'disabled'}
                   disabled={!isValidMode}
                   endIcon={<Icon name="launch-arrow" />} // launch-arrow | launch-info
-                  className={classnames('font-bold', { 'ml-2': !isFirst })}
+                  className={classnames('font-medium	', { 'ml-2': !isFirst })}
                   onClick={() => {}}
                 >
                   {t(`Modes:${mode.displayName}`)}
@@ -470,7 +470,11 @@ function WorkList({
         </>
       ) : (
         <div className="flex flex-col items-center justify-center pt-48">
-          <EmptyStudies isLoading={isLoadingData} />
+          {appConfig.showLoadingIndicator && isLoadingData ? (
+            <LoadingIndicatorProgress className={'w-full h-full bg-black'} />
+          ) : (
+            <EmptyStudies />
+          )}
         </div>
       )}
     </div>
@@ -499,6 +503,7 @@ const defaultFilterValues = {
   sortDirection: 'none',
   pageNumber: 1,
   resultsPerPage: 25,
+  datasourcename: '',
 };
 
 function _tryParseInt(str, defaultValue) {
@@ -530,6 +535,7 @@ function _getQueryFilterValues(query) {
     sortDirection: query.get('sortDirection'),
     pageNumber: _tryParseInt(query.get('pageNumber'), undefined),
     resultsPerPage: _tryParseInt(query.get('resultsPerPage'), undefined),
+    datasourcename: query.get('datasourcename'),
   };
 
   // Delete null/undefined keys
