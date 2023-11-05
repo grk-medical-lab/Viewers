@@ -74,7 +74,7 @@ class DicomUploadService {
       //     20230630 위치를 핀셋으로 발송하고 나중에 오류 발생시 loop를 돌리거나 그때그때 다이콤따라 변형 가능하게 가야함
       // const studyIuid = responseJson.elements[0].elements[1].elements[0].elements[1].elements[0].elements[0].text
 
-      // http://101.101.211.211:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/1.3.6.1.4.1.14519.5.2.1.7009.2401.209000980135320089181470178645
+      // http://49.50.164.183:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies/1.3.6.1.4.1.14519.5.2.1.7009.2401.209000980135320089181470178645
       const urlWithstudyIuid = responseJson.elements[0].elements[0].elements[0].elements[0].text
 
       // urlWithstudyIuid을 studies 을 기준으로 split 하여 studyIuidTemp에 저장한다.
